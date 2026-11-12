@@ -1,0 +1,194 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-23 15:54+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: .\accounts\admin.py:6 .\blog\models.py:7 .\blog\models.py:21
+msgid "title"
+msgstr "заголовок"
+
+#: .\accounts\admin.py:7
+msgid "sub title"
+msgstr "подзаголовок"
+
+#: .\accounts\admin.py:8 .\blog\models.py:9 .\blog\models.py:24
+msgid "text"
+msgstr "текст"
+
+#: .\accounts\admin.py:9 .\blog\models.py:10 .\blog\models.py:22
+#: .\products\models.py:8 .\products\models.py:75
+msgid "image"
+msgstr "изображение"
+
+#: .\accounts\admin.py:15 .\blog\models.py:16
+msgid "Banner"
+msgstr "Баннер"
+
+#: .\accounts\admin.py:16 .\blog\models.py:17
+msgid "Banners"
+msgstr "Баннеры"
+
+#: .\accounts\models.py:6
+msgid "Avatar"
+msgstr "Аватар"
+
+#: .\blog\models.py:8 .\blog\models.py:23
+msgid "sub_title"
+msgstr "подзаголовок"
+
+#: .\blog\models.py:25
+msgid "quote"
+msgstr "цитата"
+
+#: .\blog\models.py:40 .\blog\models.py:64 .\contacts\models.py:7
+msgid "user"
+msgstr "пользователь"
+
+#: .\blog\models.py:46
+msgid "post"
+msgstr "пост"
+
+#: .\blog\models.py:70
+msgid "comment"
+msgstr "комментарий"
+
+#: .\blog\models.py:77
+msgid "CommentLike"
+msgstr "Лайк комментария"
+
+#: .\blog\models.py:78
+msgid "CommentLikes"
+msgstr "Лайки комментариев"
+
+#: .\contacts\models.py:8 .\products\models.py:7 .\products\models.py:19
+#: .\products\models.py:52
+msgid "name"
+msgstr "название"
+
+#: .\contacts\models.py:9
+msgid "email"
+msgstr "электронная почта"
+
+#: .\contacts\models.py:10
+msgid "subject"
+msgstr "тема"
+
+#: .\contacts\models.py:11
+msgid "message"
+msgstr "сообщение"
+
+#: .\contacts\models.py:12 .\products\models.py:92
+msgid "created at"
+msgstr "время создания"
+
+#: .\contacts\models.py:18
+msgid "Contact"
+msgstr "Контакт"
+
+#: .\contacts\models.py:19
+msgid "Contacts"
+msgstr "Контакты"
+
+#: .\products\models.py:14
+msgid "Category"
+msgstr "Категория"
+
+#: .\products\models.py:15
+msgid "Categories"
+msgstr "Категории"
+
+#: .\products\models.py:25
+msgid "Brand"
+msgstr "Бренд"
+
+#: .\products\models.py:26
+msgid "Brands"
+msgstr "Бренды"
+
+#: .\products\models.py:30
+msgid "color"
+msgstr "цвет"
+
+#: .\products\models.py:36
+msgid "Color"
+msgstr "Цвет"
+
+#: .\products\models.py:37
+msgid "Colors"
+msgstr "Цвета"
+
+#: .\products\models.py:41
+msgid "size"
+msgstr "размер"
+
+#: .\products\models.py:47
+msgid "Size"
+msgstr "Размер"
+
+#: .\products\models.py:48
+msgid "Sizes"
+msgstr "Размеры"
+
+#: .\products\models.py:57
+msgid "category"
+msgstr "категория"
+
+#: .\products\models.py:63
+msgid "brand"
+msgstr "бренд"
+
+#: .\products\models.py:68
+msgid "colors"
+msgstr "цвета"
+
+#: .\products\models.py:73
+msgid "sizes"
+msgstr "размеры"
+
+#: .\products\models.py:76
+msgid "price"
+msgstr "цена"
+
+#: .\products\models.py:77
+msgid "short description"
+msgstr "краткое описание"
+
+#: .\products\models.py:78
+msgid "long description"
+msgstr "полное описание"
+
+#: .\products\models.py:79
+msgid "discount"
+msgstr "скидка"
+
+#: .\products\models.py:84
+msgid "wishlist"
+msgstr "список желаний"
+
+#: .\products\models.py:90
+msgid "cart"
+msgstr "корзина"
+
+#: .\products\models.py:98
+msgid "Product"
+msgstr "Товар"
+
+#: .\products\models.py:99
+msgid "Products"
+msgstr "Товары"
