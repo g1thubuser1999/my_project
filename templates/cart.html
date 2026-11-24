@@ -1,6 +1,7 @@
 {% extends 'layouts/base.html' %}
 
 {% load static %}
+{% load i18n %}
 
 {% block extra_css %}
 <style>
@@ -258,16 +259,16 @@
 {% block content %}
 <section class="section">
     <div class="container">
-        <h1>Shopping Cart</h1>
+        <h1>{% trans "Shopping Cart" %}</h1>
 
         <div class="cart-layout">
             {% if products %}
             <div class="cart-items">
                 <div class="cart-header">
-                    <div>Product</div>
-                    <div>Description</div>
-                    <div>Quantity</div>
-                    <div>Price</div>
+                    <div>{% trans "Product" %}</div>
+                    <div>{% trans "Description" %}</div>
+                    <div>{% trans "Quantity" %}</div>
+                    <div>{% trans "Price" %}</div>
                     <div></div>
                 </div>
 
@@ -291,7 +292,7 @@
                     </div>
                     <div class="item-price">${{ product.get_price }}</div>
                     <div class="item-remove">
-                        <a href="{% url 'product:cart-delete' pk=product.pk %}?next={{ request.get_full_path|urlencode }}">
+                        <a href="{% url 'products:cart-delete' pk=product.pk %}?next={{ request.get_full_path|urlencode }}">
                             <i class="fas fa-times"></i>
                         </a>
                     </div>
@@ -300,50 +301,50 @@
 
                 <div class="cart-actions">
                     <div class="coupon">
-                        <input type="text" placeholder="Coupon code" class="form-control"/>
-                        <button class="btn btn-outline">Apply Coupon</button>
+                        <input type="text" placeholder="{% trans 'Coupon code' %}" class="form-control"/>
+                        <button class="btn btn-outline">{% trans "Apply Coupon" %}</button>
                     </div>
-                    <button class="btn btn-outline">Update Cart</button>
+                    <button class="btn btn-outline">{% trans "Update Cart" %}</button>
                 </div>
             </div>
             {% else %}
             <div class="empty-cart">
                 <i class="fas fa-shopping-cart"></i>
-                <h2>Your cart is empty</h2>
-                <p>Looks like you haven't added any items to your cart yet.</p>
-                <a href="{% url 'product:shop' %}" class="btn btn-primary">Continue Shopping</a>
+                <h2>{% trans "Your cart is empty" %}</h2>
+                <p>{% trans "Looks like you haven't added any items to your cart yet." %}</p>
+                <a href="{% url 'products:shop' %}" class="btn btn-primary">{% trans "Continue Shopping" %}</a>
             </div>
             {% endif %}
 
             <div class="cart-summary">
-                <h2>Cart Summary</h2>
+                <h2>{% trans "Cart Summary" %}</h2>
 
                 <div class="summary-row">
-                    <span>Subtotal</span>
+                    <span>{% trans "Subtotal" %}</span>
                     <span style="font-weight: 600">$84.96</span>
                 </div>
 
                 <div class="summary-row">
-                    <span>Shipping</span>
+                    <span>{% trans "Shipping" %}</span>
                     <span style="font-weight: 600">$5.00</span>
                 </div>
 
                 <div class="summary-row">
-                    <span>Tax</span>
+                    <span>{% trans "Tax" %}</span>
                     <span style="font-weight: 600">$8.50</span>
                 </div>
 
                 <div class="summary-row total">
-                    <span>Total</span>
+                    <span>{% trans "Total" %}</span>
                     <span>$98.46</span>
                 </div>
 
                 <button class="btn btn-success" style="width: 100%; margin-bottom: 20px">
-                    Proceed to Checkout
+                    {% trans "Proceed to Checkout" %}
                 </button>
 
                 <div class="payment-methods">
-                    <p>We accept:</p>
+                    <p>{% trans "We accept:" %}</p>
                     <div class="payment-icons">
                         <i class="fab fa-cc-visa"></i>
                         <i class="fab fa-cc-mastercard"></i>
@@ -358,7 +359,7 @@
 
 <section class="section">
     <div class="container">
-        <h2 class="section-title">You May Also Like</h2>
+        <h2 class="section-title">{% trans "You May Also Like" %}</h2>
 
         <div class="row">
             {% for product in related %}

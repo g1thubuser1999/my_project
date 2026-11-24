@@ -1,7 +1,7 @@
 {% extends 'layouts/base.html' %}
 
 {% load static %}
-
+{% load i18n %}
 {% load my_tags %}
 
 {% block extra_css %}
@@ -15,8 +15,8 @@
         }
 
         .color-dot {
-            width: 28px;
-            height: 28px;
+            width: 25px;
+            height: 25px;
             border-radius: 50%;
             display: inline-block;
             cursor: pointer;
@@ -24,25 +24,21 @@
             transition: all 0.2s ease;
         }
 
-        /* Hover effect */
         .color-dot:hover {
             transform: scale(1.15);
             border-color: #333;
         }
 
-        /* Optional: active/selected state */
         .color-dot.active {
             border: 2px solid black;
             box-shadow: 0 0 0 2px white inset;
         }
 
-        .product-full{
+        .product-full {
             height: 550px;
         }
     </style>
-
 {% endblock %}
-
 
 {% block content %}
 
@@ -50,156 +46,253 @@
     <div class="container py-5">
         <div class="row">
 
+            <!-- Sidebar: Search, Categories, Brands -->
             <div class="col-lg-3">
-                <h1 class="h2 pb-4">Categories</h1>
+                <h1 class="h2 pb-3">{% trans "Filter & Search" %}</h1>
+
+                <!-- Search Form -->
+                <form method="get" action="{% url 'products:shop' %}" class="mb-4">
+                    {% if current_category %}
+                        <input type="hidden" name="category" value="{{ current_category }}">
+                    {% endif %}
+                    {% if current_brand %}
+                        <input type="hidden" name="brand" value="{{ current_brand }}">
+                    {% endif %}
+                    {% if current_sort %}
+                        <input type="hidden" name="sort" value="{{ current_sort }}">
+                    {% endif %}
+                    <div class="input-group">
+                        <input type="text"
+                               name="q"
+                               value="{{ current_q }}"
+                               class="form-control"
+                               placeholder="{% trans 'Search products...' %}">
+                        <button class="btn btn-success text-white" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+
                 <ul class="list-unstyled templatemo-accordion">
+                    <!-- Categories -->
                     <li class="pb-3">
-                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                            Gender
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none"
+                           data-bs-toggle="collapse" href="#collapseCategories" role="button" aria-expanded="true">
+                            {% trans "Categories" %}
                             <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
-                        <ul class="collapse show list-unstyled pl-3">
-                            <li><a class="text-decoration-none" href="#">Men</a></li>
-                            <li><a class="text-decoration-none" href="#">Women</a></li>
+                        <ul id="collapseCategories" class="collapse show list-unstyled pl-3">
+                            <li class="py-1">
+                                <a class="text-decoration-none {% if not current_category %}text-success fw-bold{% else %}text-dark{% endif %}"
+                                   href="{% url 'products:shop' %}{% if current_q %}?q={{ current_q|urlencode }}{% endif %}">
+                                    {% trans "All Categories" %}
+                                </a>
+                            </li>
+                            {% for cat in categories %}
+                                <li class="py-1">
+                                    <a class="text-decoration-none {% if current_category == cat.pk|stringformat:'s' %}text-success fw-bold{% else %}text-dark{% endif %}"
+                                       href="?category={{ cat.pk }}{% if current_q %}&q={{ current_q|urlencode }}{% endif %}{% if current_brand %}&brand={{ current_brand }}{% endif %}{% if current_sort %}&sort={{ current_sort }}{% endif %}">
+                                        {{ cat.name }}
+                                    </a>
+                                </li>
+                            {% endfor %}
                         </ul>
                     </li>
+
+                    <!-- Brands -->
                     <li class="pb-3">
-                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                            Sale
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none"
+                           data-bs-toggle="collapse" href="#collapseBrands" role="button" aria-expanded="true">
+                            {% trans "Brands" %}
+                            <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
-                        <ul id="collapseTwo" class="collapse list-unstyled pl-3">
-                            <li><a class="text-decoration-none" href="#">Sport</a></li>
-                            <li><a class="text-decoration-none" href="#">Luxury</a></li>
-                        </ul>
-                    </li>
-                    <li class="pb-3">
-                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                            Product
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
-                        </a>
-                        <ul id="collapseThree" class="collapse list-unstyled pl-3">
-                            <li><a class="text-decoration-none" href="#">Bag</a></li>
-                            <li><a class="text-decoration-none" href="#">Sweather</a></li>
-                            <li><a class="text-decoration-none" href="#">Sunglass</a></li>
+                        <ul id="collapseBrands" class="collapse show list-unstyled pl-3">
+                            <li class="py-1">
+                                <a class="text-decoration-none {% if not current_brand %}text-success fw-bold{% else %}text-dark{% endif %}"
+                                   href="{% url 'products:shop' %}{% if current_category %}?category={{ current_category }}{% endif %}">
+                                    {% trans "All Brands" %}
+                                </a>
+                            </li>
+                            {% for brand in brands %}
+                                <li class="py-1">
+                                    <a class="text-decoration-none {% if current_brand == brand.pk|stringformat:'s' %}text-success fw-bold{% else %}text-dark{% endif %}"
+                                       href="?brand={{ brand.pk }}{% if current_q %}&q={{ current_q|urlencode }}{% endif %}{% if current_category %}&category={{ current_category }}{% endif %}{% if current_sort %}&sort={{ current_sort }}{% endif %}">
+                                        {{ brand.name }}
+                                    </a>
+                                </li>
+                            {% endfor %}
                         </ul>
                     </li>
                 </ul>
+
+                {% if current_q or current_category or current_brand or current_sort %}
+                    <a href="{% url 'products:shop' %}" class="btn btn-outline-secondary btn-sm w-100 mt-2">
+                        {% trans "Reset Filters" %}
+                    </a>
+                {% endif %}
             </div>
 
+            <!-- Main Products Column -->
             <div class="col-lg-9">
-                <div class="row">
+                <div class="row align-items-center mb-3">
                     <div class="col-md-6">
-                        <ul class="list-inline shop-top-menu pb-3 pt-1">
+                        <ul class="list-inline shop-top-menu pb-2 pt-1 mb-0">
                             <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none mr-3" href="#">All</a>
+                                <a class="h3 text-decoration-none me-3 {% if not current_category %}text-success fw-bold{% else %}text-dark{% endif %}"
+                                   href="{% url 'products:shop' %}{% if current_q %}?q={{ current_q|urlencode }}{% endif %}">
+                                    {% trans "All" %}
+                                </a>
                             </li>
-                            <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none mr-3" href="#">Men's</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none" href="#">Women's</a>
-                            </li>
+                            {% for cat in categories|slice:":3" %}
+                                <li class="list-inline-item">
+                                    <a class="h3 text-decoration-none me-3 {% if current_category == cat.pk|stringformat:'s' %}text-success fw-bold{% else %}text-dark{% endif %}"
+                                       href="?category={{ cat.pk }}{% if current_q %}&q={{ current_q|urlencode }}{% endif %}{% if current_sort %}&sort={{ current_sort }}{% endif %}">
+                                        {{ cat.name }}
+                                    </a>
+                                </li>
+                            {% endfor %}
                         </ul>
                     </div>
-                    <div class="col-md-6 pb-4">
-                        <div class="d-flex">
-                            <select class="form-control">
-                                <option>Featured</option>
-                                <option>A to Z</option>
-                                <option>Item</option>
+
+                    <!-- Sort Select -->
+                    <div class="col-md-6 pb-2">
+                        <form method="get" action="{% url 'products:shop' %}" id="sortForm" class="d-flex justify-content-md-end">
+                            {% if current_q %}
+                                <input type="hidden" name="q" value="{{ current_q }}">
+                            {% endif %}
+                            {% if current_category %}
+                                <input type="hidden" name="category" value="{{ current_category }}">
+                            {% endif %}
+                            {% if current_brand %}
+                                <input type="hidden" name="brand" value="{{ current_brand }}">
+                            {% endif %}
+                            <select name="sort" class="form-control w-auto" onchange="document.getElementById('sortForm').submit();">
+                                <option value="" {% if not current_sort %}selected{% endif %}>{% trans "Featured (Newest)" %}</option>
+                                <option value="a_to_z" {% if current_sort == 'a_to_z' %}selected{% endif %}>{% trans "A to Z" %}</option>
+                                <option value="z_to_a" {% if current_sort == 'z_to_a' %}selected{% endif %}>{% trans "Z to A" %}</option>
+                                <option value="price_asc" {% if current_sort == 'price_asc' %}selected{% endif %}>{% trans "Price: Low to High" %}</option>
+                                <option value="price_desc" {% if current_sort == 'price_desc' %}selected{% endif %}>{% trans "Price: High to Low" %}</option>
                             </select>
-                        </div>
+                        </form>
                     </div>
                 </div>
 
+                {% if current_q %}
+                    <p class="text-muted mb-3">{% trans "Search results for:" %} <strong>"{{ current_q }}"</strong></p>
+                {% endif %}
+
+                <!-- Products Grid -->
                 <div class="row">
                     {% for product in products %}
                         <div class="col-md-4">
-                        <div class="card mb-4 products-wap rounded-0 product-full">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid"
-                                     style="width: 100%; height: 300px; object-fit: contain"
-                                     src="{{ products.image.url }}" alt="{{ products.name }}">
-                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center"
-                                     style="width: 100%; height: 300px;">
-                                    <ul class="list-unstyled">
+                            <div class="card mb-4 products-wap rounded-0 product-full">
+                                <div class="card rounded-0">
+                                    <img class="card-img rounded-0 img-fluid"
+                                         style="width: 100%; height: 300px; object-fit: contain"
+                                         src="{{ product.image.url }}" alt="{{ product.name }}">
+                                    <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center"
+                                         style="width: 100%; height: 300px;">
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <a class="btn btn-success text-white"
+                                                   href="{% url 'products:wishlist-create' pk=product.pk %}?next={{ request.path }}?{{ request.GET.urlencode }}">
+                                                    <i class="{% heart_icon request.user product %}"
+                                                       style="color: rgb(255, 255, 255);"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="btn btn-success text-white mt-2"
+                                                   href="{% url 'products:detail' pk=product.pk %}">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="btn btn-success text-white mt-2"
+                                                   href="{% url 'products:cart-create' pk=product.pk %}?next={{ request.path }}?{{ request.GET.urlencode }}">
+                                                    <i class="fas fa-cart-plus"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <a href="{% url 'products:detail' pk=product.pk %}" class="h3 text-decoration-none">
+                                        {{ product.name }}
+                                    </a>
+                                    <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                         <li>
-                                            <a class="btn btn-success text-white"
-                                               href="{% url 'products:wishlist-create' pk=product.pk %}?next={{ request.path }}?{{ request.GET.urlencode }}">
-                                                <i class="{% heart_icon request.user product %}"
-                                                   style="color: rgb(255, 255, 255);"></i>
-
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="btn btn-success text-white mt-2"
-                                               href="{% url 'products:detail' pk=product.pk %}">
-                                            <i class="far fa-eye"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="btn btn-success text-white mt-2"
-                                               href="{% url 'products:cart-create' pk=product.pk %}?next={{ request.path }}?{{ request.GET.urlencode }}">
-                                            <i class="fas fa-cart-plus"></i>
-                                            </a>
+                                            {% for size in product.sizes.all %}
+                                                {{ size.size }}{% if not forloop.last %}/{% endif %}
+                                            {% endfor %}
                                         </li>
                                     </ul>
+                                    <ul class="w-100 list-unstyled d-flex gap-2 mb-0">
+                                        <li class="pt-2">
+                                            {% for color in product.colors.all %}
+                                                <span class="color-dot"
+                                                      style="background-color: {{ color.color }};"></span>
+                                            {% endfor %}
+                                        </li>
+                                    </ul>
+                                    <ul class="list-unstyled d-flex justify-content-center mb-1">
+                                        <li>
+                                            <i class="text-warning fa fa-star"></i>
+                                            <i class="text-warning fa fa-star"></i>
+                                            <i class="text-warning fa fa-star"></i>
+                                            <i class="text-muted fa fa-star"></i>
+                                            <i class="text-muted fa fa-star"></i>
+                                        </li>
+                                    </ul>
+                                    <p class="text-center mb-0">
+                                        ${{ product.get_price }}
+                                        {% if product.discount %}
+                                            <small><del>${{ product.price }}</del></small>
+                                        {% endif %}
+                                    </p>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <a href="{% url 'products:detail' pk=product.pk %}" class="h3 text-decoration-none">
-                                    {{ product.name }}
-                                </a>
-                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                    <li>
-                                        {% for size in products.sizes.all %}
-                                            {{ size.size }}{% if not forloop.last %}/{% endif %}
-                                        {% endfor %}
-                                    </li>
-
-                                </ul>
-                                <ul class="w-100 list-unstyled d-flex gap-2 mb-0">
-                                    <li class="pt-2">
-                                        {% for color in products.colors.all %}
-                                            <span class="color-dot"
-                                                style="width: 25px; height: 25px; background-color: {{ color.color }}; border-radius: 50%"></span>
-                                        {% endfor %}
-                                    </li>
-                                </ul>
-                                <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                    <li>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-warning fa fa-star"></i>
-                                        <i class="text-muted fa fa-star"></i>
-                                        <i class="text-muted fa fa-star"></i>
-                                    </li>
-                                </ul>
-                                <p class="text-center mb-0">
-                                    ${{ products.get_price }}
-                                    {% if products.is_discount %}
-                                        <small><strike>${{ product.price}}</strike></small>
-                                    {% endif %}
-                                </p>
-                            </div>
                         </div>
-                    </div>
+                    {% empty %}
+                        <div class="col-12 text-center py-5">
+                            <h4>{% trans "No products found." %}</h4>
+                            <a href="{% url 'products:shop' %}" class="btn btn-success mt-2">{% trans "Show All Products" %}</a>
+                        </div>
                     {% endfor %}
                 </div>
-                <div div="row">
-                    <ul class="pagination pagination-lg justify-content-end">
-                        <li class="page-item disabled">
-                            <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="#" tabindex="-1">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="#">3</a>
-                        </li>
-                    </ul>
-                </div>
+
+                <!-- Pagination -->
+                {% if is_paginated %}
+                    <div class="row">
+                        <ul class="pagination pagination-lg justify-content-end">
+                            {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark"
+                                       href="?page={{ page_obj.previous_page_number }}{% if query_string %}&{{ query_string }}{% endif %}">
+                                        &laquo;
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            {% for num in page_obj.paginator.page_range %}
+                                <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                                    <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 {% if page_obj.number != num %}text-dark{% endif %}"
+                                       href="?page={{ num }}{% if query_string %}&{{ query_string }}{% endif %}">
+                                        {{ num }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+
+                            {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark"
+                                       href="?page={{ page_obj.next_page_number }}{% if query_string %}&{{ query_string }}{% endif %}">
+                                        &raquo;
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                {% endif %}
             </div>
 
         </div>
@@ -211,102 +304,50 @@
         <div class="container my-4">
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
-                    <h1 class="h1">Our Brands</h1>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        Lorem ipsum dolor sit amet.
-                    </p>
+                    <h1 class="h1">{% trans "Our Brands" %}</h1>
+                    <p>{% trans "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod Lorem ipsum dolor sit amet." %}</p>
                 </div>
                 <div class="col-lg-9 m-auto tempaltemo-carousel">
                     <div class="row d-flex flex-row">
-                        <!--Controls-->
                         <div class="col-1 align-self-center">
                             <a class="h1" href="#multi-item-example" role="button" data-bs-slide="prev">
                                 <i class="text-light fas fa-chevron-left"></i>
                             </a>
                         </div>
-                        <!--End Controls-->
 
-                        <!--Carousel Wrapper-->
                         <div class="col">
                             <div class="carousel slide carousel-multi-item pt-2 pt-md-0" id="multi-item-example" data-bs-ride="carousel">
-                                <!--Slides-->
                                 <div class="carousel-inner product-links-wap" role="listbox">
-
-                                    <!--First slide-->
                                     <div class="carousel-item active">
                                         <div class="row">
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_01.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'img/brand_01.png' %}" alt="{% trans 'Brand Logo' %}"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_02.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'img/brand_02.png' %}" alt="{% trans 'Brand Logo' %}"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_03.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'img/brand_03.png' %}" alt="{% trans 'Brand Logo' %}"></a>
                                             </div>
                                             <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_04.png" alt="Brand Logo"></a>
+                                                <a href="#"><img class="img-fluid brand-img" src="{% static 'img/brand_04.png' %}" alt="{% trans 'Brand Logo' %}"></a>
                                             </div>
                                         </div>
                                     </div>
-                                    <!--End First slide-->
-
-                                    <!--Second slide-->
-                                    <div class="carousel-item">
-                                        <div class="row">
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_01.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_02.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_03.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_04.png" alt="Brand Logo"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--End Second slide-->
-
-                                    <!--Third slide-->
-                                    <div class="carousel-item">
-                                        <div class="row">
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_01.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_02.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_03.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_04.png" alt="Brand Logo"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--End Third slide-->
-
                                 </div>
-                                <!--End Slides-->
                             </div>
                         </div>
-                        <!--End Carousel Wrapper-->
 
-                        <!--Controls-->
                         <div class="col-1 align-self-center">
                             <a class="h1" href="#multi-item-example" role="button" data-bs-slide="next">
                                 <i class="text-light fas fa-chevron-right"></i>
                             </a>
                         </div>
-                        <!--End Controls-->
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!--End Brands-->
+    <!-- End Brands -->
+
 {% endblock %}

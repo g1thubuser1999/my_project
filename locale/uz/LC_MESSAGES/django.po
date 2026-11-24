@@ -1,193 +1,553 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: online_shop\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-23 15:54+0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Uzbek <uz@li.org>\n"
+"POT-Creation-Date: 2026-11-24 15:45+0500\n"
+"PO-Revision-Date: 2026-11-23 00:00+0500\n"
+"Last-Translator: \n"
+"Language-Team: Uzbek\n"
 "Language: uz\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\accounts\admin.py:6 .\blog\models.py:7 .\blog\models.py:21
 msgid "title"
 msgstr "sarlavha"
 
-#: .\accounts\admin.py:7
 msgid "sub title"
 msgstr "ostsarlavha"
 
-#: .\accounts\admin.py:8 .\blog\models.py:9 .\blog\models.py:24
 msgid "text"
 msgstr "matn"
 
-#: .\accounts\admin.py:9 .\blog\models.py:10 .\blog\models.py:22
-#: .\products\models.py:8 .\products\models.py:75
 msgid "image"
 msgstr "rasm"
 
-#: .\accounts\admin.py:15 .\blog\models.py:16
 msgid "Banner"
 msgstr "Banner"
 
-#: .\accounts\admin.py:16 .\blog\models.py:17
 msgid "Banners"
 msgstr "Bannerlar"
 
-#: .\accounts\models.py:6
 msgid "Avatar"
 msgstr "Avatar"
 
-#: .\blog\models.py:8 .\blog\models.py:23
 msgid "sub_title"
 msgstr "ost_sarlavha"
 
-#: .\blog\models.py:25
+msgid "About Us"
+msgstr "Biz haqimizda"
+
 msgid "quote"
 msgstr "iqtibos"
 
-#: .\blog\models.py:40 .\blog\models.py:64 .\contacts\models.py:7
 msgid "user"
 msgstr "foydalanuvchi"
 
-#: .\blog\models.py:46
 msgid "post"
 msgstr "post"
 
-#: .\blog\models.py:70
 msgid "comment"
 msgstr "izoh"
 
-#: .\blog\models.py:77
 msgid "CommentLike"
 msgstr "Izoh layki"
 
-#: .\blog\models.py:78
 msgid "CommentLikes"
 msgstr "Izoh layklari"
 
-#: .\contacts\models.py:8 .\products\models.py:7 .\products\models.py:19
-#: .\products\models.py:52
 msgid "name"
 msgstr "nomi"
 
-#: .\contacts\models.py:9
 msgid "email"
 msgstr "elektron pochta"
 
-#: .\contacts\models.py:10
 msgid "subject"
 msgstr "mavzu"
 
-#: .\contacts\models.py:11
 msgid "message"
 msgstr "xabar"
 
-#: .\contacts\models.py:12 .\products\models.py:92
 msgid "created at"
 msgstr "yaratilgan vaqti"
 
-#: .\contacts\models.py:18
 msgid "Contact"
 msgstr "Aloqa"
 
-#: .\contacts\models.py:19
 msgid "Contacts"
 msgstr "Aloqalar"
 
-#: .\products\models.py:14
+msgid "O'zbekcha"
+msgstr "O'zbekcha"
+
+msgid "Русский"
+msgstr "Ruscha"
+
+msgid "English"
+msgstr "Inglizcha"
+
 msgid "Category"
 msgstr "Kategoriya"
 
-#: .\products\models.py:15
 msgid "Categories"
 msgstr "Kategoriyalar"
 
-#: .\products\models.py:25
 msgid "Brand"
 msgstr "Brend"
 
-#: .\products\models.py:26
 msgid "Brands"
 msgstr "Brendlar"
 
-#: .\products\models.py:30
 msgid "color"
 msgstr "rang"
 
-#: .\products\models.py:36
 msgid "Color"
 msgstr "Rang"
 
-#: .\products\models.py:37
 msgid "Colors"
 msgstr "Ranglar"
 
-#: .\products\models.py:41
 msgid "size"
-msgstr "o‘lcham"
+msgstr "o'lcham"
 
-#: .\products\models.py:47
 msgid "Size"
-msgstr "O‘lcham"
+msgstr "O'lcham"
 
-#: .\products\models.py:48
 msgid "Sizes"
-msgstr "O‘lchamlar"
+msgstr "O'lchamlar"
 
-#: .\products\models.py:57
 msgid "category"
 msgstr "kategoriya"
 
-#: .\products\models.py:63
 msgid "brand"
 msgstr "brend"
 
-#: .\products\models.py:68
 msgid "colors"
 msgstr "ranglar"
 
-#: .\products\models.py:73
 msgid "sizes"
-msgstr "o‘lchamlar"
+msgstr "o'lchamlar"
 
-#: .\products\models.py:76
 msgid "price"
 msgstr "narx"
 
-#: .\products\models.py:77
 msgid "short description"
 msgstr "qisqa tavsif"
 
-#: .\products\models.py:78
 msgid "long description"
-msgstr "batafsil tavsif"
+msgstr "to'liq tavsif"
 
-#: .\products\models.py:79
 msgid "discount"
 msgstr "chegirma"
 
-#: .\products\models.py:84
 msgid "wishlist"
 msgstr "sevimlilar"
 
-#: .\products\models.py:90
 msgid "cart"
 msgstr "savat"
 
-#: .\products\models.py:98
 msgid "Product"
 msgstr "Mahsulot"
 
-#: .\products\models.py:99
 msgid "Products"
 msgstr "Mahsulotlar"
+
+msgid "About information has not been added yet."
+msgstr "Biz haqimizdagi ma'lumotlar hali qo'shilmagan."
+
+msgid "Shopping Cart"
+msgstr "Xarid savati"
+
+msgid "Description"
+msgstr "Tavsif"
+
+msgid "Quantity"
+msgstr "Miqdor"
+
+msgid "Price"
+msgstr "Narx"
+
+msgid "Coupon code"
+msgstr "Kupon kodi"
+
+msgid "Apply Coupon"
+msgstr "Kuponni qo'llash"
+
+msgid "Update Cart"
+msgstr "Savatni yangilash"
+
+msgid "Your cart is empty"
+msgstr "Savatingiz bo'sh"
+
+msgid "Looks like you haven't added any items to your cart yet."
+msgstr "Savatingizga hali hech narsa qo'shmagansiz."
+
+msgid "Continue Shopping"
+msgstr "Xaridni davom ettirish"
+
+msgid "Cart Summary"
+msgstr "Savat xulosasi"
+
+msgid "Subtotal"
+msgstr "Oraliq jami"
+
+msgid "Shipping"
+msgstr "Yetkazib berish"
+
+msgid "Tax"
+msgstr "Solij"
+
+msgid "Total"
+msgstr "Jami"
+
+msgid "Proceed to Checkout"
+msgstr "To'lovga o'tish"
+
+msgid "We accept:"
+msgstr "Qabul qilamiz:"
+
+msgid "You May Also Like"
+msgstr "Sizga ham yoqishi mumkin"
+
+msgid "Contact Us"
+msgstr "Biz bilan bog'laning"
+
+msgid "If you have any questions, feel free to contact us."
+msgstr "Agar sizda biron bir savol bo'lsa, biz bilan bog'laning."
+
+msgid "Name"
+msgstr "Ism"
+
+msgid "Email"
+msgstr "Elektron pochta"
+
+msgid "Subject"
+msgstr "Mavzu"
+
+msgid "Message"
+msgstr "Xabar"
+
+msgid "Let's Talk"
+msgstr "Keling, gaplashaylik"
+
+msgid "Our Location"
+msgstr "Bizning manzilimiz"
+
+msgid "123 Consectetur at ligula 10660"
+msgstr "123-konsectetur ko'chasi, Ligula 10660"
+
+msgid "Categories of The Month"
+msgstr "Oy kategoriyalari"
+
+msgid "Discover our latest product categories."
+msgstr "Eng so'nggi mahsulot kategoriyalarimizni kashf eting."
+
+msgid "Go Shop"
+msgstr "Do'konga o'tish"
+
+msgid "Featured Product"
+msgstr "Tavsiya etilgan mahsulotlar"
+
+msgid "Discover our featured products and find your favorite items."
+msgstr ""
+"Tavsiya etilgan mahsulotlarimizni kashf etib, sevimlilaringizni toping."
+
+msgid "View Product"
+msgstr "Mahsulotni ko'rish"
+
+msgid "Zay Shop eCommerce HTML CSS Template"
+msgstr "Zay Shop elektron tijorat shabloni"
+
+msgid "Zay Shop"
+msgstr "Zay Shop"
+
+msgid "Luxury"
+msgstr "Hashamatli"
+
+msgid "Sport Wear"
+msgstr "Sport kiyimlari"
+
+msgid "Men's Shoes"
+msgstr "Erkaklar poyabzali"
+
+msgid "Women's Shoes"
+msgstr "Ayollar poyabzali"
+
+msgid "Popular Dress"
+msgstr "Mashhur ko'ylaklar"
+
+msgid "Gym Accessories"
+msgstr "Zal aksessuarlari"
+
+msgid "Sport Shoes"
+msgstr "Sport poyabzali"
+
+msgid "Further Info"
+msgstr "Qo'shimcha ma'lumot"
+
+msgid "Home"
+msgstr "Bosh sahifa"
+
+msgid "Shop Locations"
+msgstr "Do'kon manzillari"
+
+msgid "FAQs"
+msgstr "Tez-tez so'raladigan savollar"
+
+msgid "Email address"
+msgstr "Elektron pochta manzili"
+
+msgid "Subscribe"
+msgstr "Obuna bo'lish"
+
+msgid "Copyright"
+msgstr "Mualliflik huquqi"
+
+msgid "Company Name"
+msgstr "Kompaniya nomi"
+
+msgid "Designed by"
+msgstr "Yaratgan"
+
+msgid "Zay"
+msgstr "Zay"
+
+msgid "Toggle navigation"
+msgstr "Navigatsiyani almashtirish"
+
+msgid "About"
+msgstr "Biz haqimizda"
+
+msgid "Shop"
+msgstr "Do'kon"
+
+msgid "Search products..."
+msgstr "Mahsulotlarni qidirish..."
+
+msgid "Search"
+msgstr "Qidirish"
+
+msgid "Wishlist"
+msgstr "Sevimlilar"
+
+msgid "Shopping cart"
+msgstr "Xarid savati"
+
+msgid "My account"
+msgstr "Mening hisobim"
+
+msgid "Close"
+msgstr "Yopish"
+
+msgid "Login"
+msgstr "Kirish"
+
+msgid "Welcome Back"
+msgstr "Xush kelibsiz"
+
+msgid "Sign in to your account"
+msgstr "Hisobingizga kiring"
+
+msgid "Username"
+msgstr "Foydalanuvchi nomi"
+
+msgid "Enter your username"
+msgstr "Foydalanuvchi nomingizni kiriting"
+
+msgid "Password"
+msgstr "Parol"
+
+msgid "Enter your password"
+msgstr "Parolingizni kiriting"
+
+msgid "Remember me"
+msgstr "Meni eslab qol"
+
+msgid "Forgot password?"
+msgstr "Parolni unutdingizmi?"
+
+msgid "Sign In"
+msgstr "Kirish"
+
+msgid "Don't have an account?"
+msgstr "Hisobingiz yo'qmi?"
+
+msgid "Create Account"
+msgstr "Hisob yaratish"
+
+msgid "My Profile | E-comm shop"
+msgstr "Mening profilim | E-comm do'koni"
+
+msgid "Member since"
+msgstr "A'zo bo'lgan vaqti"
+
+msgid "Cart"
+msgstr "Savat"
+
+msgid "Reviews"
+msgstr "Sharhlar"
+
+msgid "Personal Information"
+msgstr "Shaxsiy ma'lumotlar"
+
+msgid "Cancel"
+msgstr "Bekor qilish"
+
+msgid "Edit"
+msgstr "Tahrirlash"
+
+msgid "First Name"
+msgstr "Ism"
+
+msgid "Last Name"
+msgstr "Familiya"
+
+msgid "Email Address"
+msgstr "Elektron pochta manzili"
+
+msgid "Save Changes"
+msgstr "O'zgarishlarni saqlash"
+
+msgid "Sign Out"
+msgstr "Chiqish"
+
+msgid "View All"
+msgstr "Hammasini ko'rish"
+
+msgid "Remove"
+msgstr "O'chirish"
+
+msgid "Add to Cart"
+msgstr "Savatga qo'shish"
+
+msgid "Your wishlist is empty"
+msgstr "Sevimlilar ro'yxatingiz bo'sh"
+
+msgid "Register"
+msgstr "Ro'yxatdan o'tish"
+
+msgid "Join our community"
+msgstr "Jamiyatimizga qo'shiling"
+
+msgid "Enter your first name"
+msgstr "Ismingizni kiriting"
+
+msgid "Enter your last name"
+msgstr "Familiyangizni kiriting"
+
+msgid "Enter your email"
+msgstr "Elektron pochtangizni kiriting"
+
+msgid "Create a password"
+msgstr "Parol yarating"
+
+msgid "Confirm Password"
+msgstr "Parolni tasdiqlang"
+
+msgid "Confirm your password"
+msgstr "Parolingizni tasdiqlang"
+
+msgid "Already have an account?"
+msgstr "Hisobingiz bormi?"
+
+msgid "Rating 4.8 | 36 Comments"
+msgstr "Reyting 4.8 | 36 izoh"
+
+msgid "Brand:"
+msgstr "Brend:"
+
+msgid "Description:"
+msgstr "Tavsif:"
+
+msgid "Available Color :"
+msgstr "Mavjud ranglar :"
+
+msgid "Size :"
+msgstr "O'lcham :"
+
+msgid "Buy"
+msgstr "Sotib olish"
+
+msgid "Related Products"
+msgstr "O'xshash mahsulotlar"
+
+msgid "Filter & Search"
+msgstr "Filtrlash va qidirish"
+
+msgid "All Categories"
+msgstr "Barcha kategoriyalar"
+
+msgid "All Brands"
+msgstr "Barcha brendlar"
+
+msgid "Reset Filters"
+msgstr "Filtrlarni tiklash"
+
+msgid "All"
+msgstr "Barchasi"
+
+msgid "Featured (Newest)"
+msgstr "Tavsiya etilgan (eng yangi)"
+
+msgid "A to Z"
+msgstr "A dan Z gacha"
+
+msgid "Z to A"
+msgstr "Z dan A gacha"
+
+msgid "Price: Low to High"
+msgstr "Narx: past dan yuqorigacha"
+
+msgid "Price: High to Low"
+msgstr "Narx: yuqori dan pastgacha"
+
+msgid "Search results for:"
+msgstr "Qidiruv natijalari:"
+
+msgid "No products found."
+msgstr "Mahsulotlar topilmadi."
+
+msgid "Show All Products"
+msgstr "Barcha mahsulotlarni ko'rsatish"
+
+msgid "Our Brands"
+msgstr "Bizning brendlarimiz"
+
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod "
+"Lorem ipsum dolor sit amet."
+msgstr ""
+"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod "
+"Lorem ipsum dolor sit amet."
+
+msgid "Brand Logo"
+msgstr "Brend logotipi"
+
+msgid "My Wishlist"
+msgstr "Mening sevimlilarim"
+
+msgid "items"
+msgstr "ta"
+
+msgid "Add All to Cart"
+msgstr "Hammasini savatga qo'shish"
+
+msgid "Clear Wishlist"
+msgstr "Sevimlilar ro'yxatini tozalash"
+
+msgid "Eco-friendly Water Bottle"
+msgstr "Ekologik toza suv shishasi"
+
+msgid "View Details"
+msgstr "Batafsil ko'rish"
+
+msgid ""
+"Browse our eco-friendly products and add your favorites to your wishlist."
+msgstr "Ekologik toza mahsulotlarimizni ko'rib, sevimlilaringizni qo'shing."
+
+msgid "Shop Now"
+msgstr "Hozir xarid qilish"
+
+msgid "Item added to cart successfully!"
+msgstr "Mahsulot savatga muvaffaqiyatli qo'shildi!"

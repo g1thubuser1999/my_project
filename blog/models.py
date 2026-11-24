@@ -17,6 +17,35 @@ class BannerModel(models.Model):
         verbose_name_plural = _("Banners")
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=200)
+    title = models.CharField(max_length=200)
+    sub_title = models.CharField(max_length=200, blank=True, null=True)
+    text = models.TextField(blank=True, null=True)
+    image = models.ImageField(upload_to='categories/')
+
+    def __str__(self):
+        return self.name
+
+
+class AboutModel(models.Model):
+    title = models.CharField(max_length=100, verbose_name=_("title"))
+    text = models.TextField(verbose_name=_("text"))
+    image = models.ImageField(
+        upload_to='about/',
+        blank=True,
+        null=True,
+        verbose_name=_("image")
+    )
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _("About Us")
+        verbose_name_plural = _("About Us")
+
+
 class PostModel(models.Model):
     title = models.CharField(max_length=100, verbose_name=_("title"))
     image = models.ImageField(upload_to='posts/', verbose_name=_("image"))

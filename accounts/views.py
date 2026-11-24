@@ -65,6 +65,9 @@ def profile_view(request):
 
     context = {
         'user': user,
-        'form': form
+        'form': form,
+        'editing': request.method == 'POST' or request.GET.get('edit') == '1',
+        'wishlist': user.wishlist.order_by('-pk'),
+        'cart': user.cart.order_by('-pk'),
     }
     return render(request, 'profile.html', context)

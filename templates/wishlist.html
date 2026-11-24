@@ -1,6 +1,7 @@
 {% extends 'layouts/base.html' %}
 
 {% load static %}
+{% load i18n %}
 
 {% block extra_css %}
 
@@ -361,12 +362,12 @@
     <div class="wishlist-container">
         <div class="page-header">
             <div>
-                <h1 class="page-title">My Wishlist</h1>
-                <span class="wishlist-count">{{ products.count }} items</span>
+                <h1 class="page-title">{% trans "My Wishlist" %}</h1>
+                <span class="wishlist-count">{{ products.count }} {% trans "items" %}</span>
             </div>
             <div class="wishlist-actions">
-                <button class="btn btn-outline">Add All to Cart</button>
-                <button class="btn btn-danger-outline">Clear Wishlist</button>
+                <button class="btn btn-outline">{% trans "Add All to Cart" %}</button>
+                <button class="btn btn-danger-outline">{% trans "Clear Wishlist" %}</button>
             </div>
         </div>
 
@@ -377,9 +378,9 @@
                     <div class="item-image">
                         <img
                                 src="{{ product.image.url }}"
-                                alt="Eco-friendly Water Bottle"
+                                alt="{% trans 'Eco-friendly Water Bottle' %}"
                         />
-                        <a class="remove-btn" href="{% url 'product:wishlist-delete' pk=product.pk %}?next={{ request.path }}?{{ request.GET.urlencode }}">
+                        <a class="remove-btn" href="{% url 'products:wishlist-delete' pk=product.pk %}?next={{ request.path }}?{{ request.GET.urlencode }}">
                             ×
                         </a>
                     </div>
@@ -399,8 +400,8 @@
                             <div class="rating-count">(124)</div>
                         </div>
                         <div class="item-actions">
-                            <a class="btn btn-outline view-btn" href="{% url 'product:detail' pk=product.pk %}" style="color: green;">
-                                View Details
+                            <a class="btn btn-outline view-btn" href="{% url 'products:detail' pk=product.pk %}" style="color: green;">
+                                {% trans "View Details" %}
                             </a>
 {#                            <button class="btn add-to-cart-btn">#}
 {#                                <a style="color: white;"#}
@@ -415,12 +416,12 @@
 
                 <div class="empty-wishlist">
                     <div class="empty-icon">❤️</div>
-                    <h2 class="empty-title">Your wishlist is empty</h2>
+                    <h2 class="empty-title">{% trans "Your wishlist is empty" %}</h2>
                     <p class="empty-message">
-                        Browse our eco-friendly products and add your favorites to your wishlist.
+                        {% trans "Browse our eco-friendly products and add your favorites to your wishlist." %}
                     </p>
-                    <a class="btn" href="{% url 'product:shop' %}" style="text-decoration: none; color: white;">
-                        Shop Now
+                    <a class="btn" href="{% url 'products:shop' %}" style="text-decoration: none; color: white;">
+                        {% trans "Shop Now" %}
                     </a>
                 </div>
             {% endfor %}
@@ -430,6 +431,6 @@
 
     <div class="notification">
         <div class="notification-icon">✓</div>
-        <div class="notification-message">Item added to cart successfully!</div>
+        <div class="notification-message">{% trans "Item added to cart successfully!" %}</div>
     </div>
 {% endblock %}

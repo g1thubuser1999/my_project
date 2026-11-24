@@ -1,11 +1,13 @@
 {% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE|default:'en' }}">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>My Profile | E-comm shop</title>
+    <title>{% trans "My Profile | E-comm shop" %}</title>
     <style>
         :root {
             --primary: #59ab6e;
@@ -407,7 +409,7 @@
     <div class="profile-header">
         <div class="profile-avatar" id="profile-avatar">
             {% if user.avatar %}
-                <img class="profile-avatar" src="{{ user.avatar.url }}" alt="{{ user.username }} avatar">
+                <img class="profile-avatar" src="{{ user.avatar.url }}" alt="{% trans 'Avatar' %}">
             {% else %}
                 {{ user.first_name.0|upper }}{{ user.last_name.0|upper }}
             {% endif %}
@@ -415,20 +417,20 @@
         <div class="profile-info">
             <h1 id="profile-name">{{ user.get_full_name }}</h1>
             <p id="profile-email">{{ user.email }}</p>
-            <p>Member since <span id="join-date">{{ user.date_joined }}</span></p>
+            <p>{% trans "Member since" %} <span id="join-date">{{ user.date_joined }}</span></p>
 
             <div class="profile-stats">
                 <div class="stat">
-                    <div class="stat-value" id="orders-count">12</div>
-                    <div class="stat-label">Orders</div>
+                    <div class="stat-value" id="cart-count">{{ cart.count }}</div>
+                    <div class="stat-label">{% trans "Cart" %}</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-value" id="wishlist-count">5</div>
-                    <div class="stat-label">Wishlist</div>
+                    <div class="stat-value" id="wishlist-count">{{ wishlist.count }}</div>
+                    <div class="stat-label">{% trans "Wishlist" %}</div>
                 </div>
                 <div class="stat">
                     <div class="stat-value">2</div>
-                    <div class="stat-label">Reviews</div>
+                    <div class="stat-label">{% trans "Reviews" %}</div>
                 </div>
             </div>
         </div>
@@ -437,244 +439,127 @@
     <div class="profile-content">
         <div class="card">
             <div class="card-header">
-                <div class="card-title">Personal Information</div>
-                <div class="card-action" id="edit-info-toggle">Edit</div>
+                <div class="card-title">{% trans "Personal Information" %}</div>
+                {% if editing %}
+                    <a class="card-action" href="{% url 'accounts:profile' %}">{% trans "Cancel" %}</a>
+                {% else %}
+                    <a class="card-action" href="{% url 'accounts:profile' %}?edit=1">{% trans "Edit" %}</a>
+                {% endif %}
             </div>
 
-            <form id="personal-info-form" method="POST" enctype="multipart/form-data">
+            <form id="personal-info-form" method="POST" action="{% url 'accounts:profile' %}" enctype="multipart/form-data">
                 {% csrf_token %}
+                {{ form.non_field_errors }}
                 <div class="form-group">
-                    <label for="first-name-input">First Name</label>
+                    <label for="first-name-input">{% trans "First Name" %}</label>
                     <input
                             type="text"
                             id="first-name-input"
                             name="first_name"
-                            value="{{ user.first_name }}"
-                            disabled
+                            value="{{ form.first_name.value|default:user.first_name }}"
+                            {% if not editing %}disabled{% endif %}
                     />
+                    {{ form.first_name.errors }}
                 </div>
                 <div class="form-group">
-                    <label for="last-name-input">Last Name</label>
+                    <label for="last-name-input">{% trans "Last Name" %}</label>
                     <input
                             type="text"
                             id="last-name-input"
                             name="last_name"
-                            value="{{ user.last_name }}"
-                            disabled
+                            value="{{ form.last_name.value|default:user.last_name }}"
+                            {% if not editing %}disabled{% endif %}
                     />
+                    {{ form.last_name.errors }}
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Email Address</label>
+                    <label for="email">{% trans "Email Address" %}</label>
                     <input
                             type="email"
                             id="email"
                             name="email"
-                            value="{{ user.email }}"
-                            disabled
+                            value="{{ form.email.value|default:user.email }}"
+                            {% if not editing %}disabled{% endif %}
                     />
+                    {{ form.email.errors }}
                 </div>
 
                 <div class="form-group">
-                    <label for="phone">Avatar</label>
-                    <input type="file" name="avatar" id="phone" disabled/>
+                    <label for="avatar-input">{% trans "Avatar" %}</label>
+                    <input type="file" name="avatar" id="avatar-input" {% if not editing %}disabled{% endif %}/>
+                    {{ form.avatar.errors }}
                 </div>
 
-                <button
-                        type="submit"
-                        class="btn"
-                        id="save-info-btn"
-                        style="display: none"
-                >
-                    Save Changes
-                </button>
-            </form>
+                {% if editing %}
+                    <button type="submit" class="btn" id="save-info-btn">{% trans "Save Changes" %}</button>
+                {% endif %}
+             </form>
+             <a href="{% url 'accounts:logout' %}" class="btn logout-btn">{% trans "Sign Out" %}</a>
+         </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">{% trans "Shopping cart" %}</div>
+                <a class="card-action" href="{% url 'products:cart-list' %}">{% trans "View All" %}</a>
+            </div>
+
+            {% for product in cart %}
+                <div class="wishlist-item">
+                    <div class="wishlist-image">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        {% endif %}
+                    </div>
+                    <div class="wishlist-details">
+                        <div class="wishlist-title">{{ product.name }}</div>
+                        <div class="wishlist-price">${{ product.get_price }}</div>
+                        <div class="wishlist-actions">
+                            <a class="btn btn-outline" style="font-size: 12px; padding: 5px 10px"
+                               href="{% url 'products:cart-delete' pk=product.pk %}?next={{ request.get_full_path|urlencode }}">
+                                {% trans "Remove" %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p>{% trans "Your cart is empty" %}</p>
+            {% endfor %}
         </div>
 
         <div class="card">
             <div class="card-header">
-                <div class="card-title">Recent Orders</div>
-                <div class="card-action">View All</div>
+                <div class="card-title">{% trans "Wishlist" %}</div>
+                <a class="card-action" href="{% url 'products:wishlist-list' %}">{% trans "View All" %}</a>
             </div>
 
-            <div class="order-item">
-                <div>
-                    <div class="order-id">#ORD-2023-8764</div>
-                    <div class="order-date">March 5, 2023</div>
-                </div>
-                <div class="order-status status-delivered">Delivered</div>
-            </div>
-
-            <div class="order-item">
-                <div>
-                    <div class="order-id">#ORD-2023-8532</div>
-                    <div class="order-date">February 28, 2023</div>
-                </div>
-                <div class="order-status status-processing">Processing</div>
-            </div>
-
-            <div class="order-item">
-                <div>
-                    <div class="order-id">#ORD-2023-8490</div>
-                    <div class="order-date">February 20, 2023</div>
-                </div>
-                <div class="order-status status-delivered">Delivered</div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title">Shipping Addresses</div>
-                <div class="card-action">Add New</div>
-            </div>
-
-            <div class="address-item">
-                <div class="address-type">
-                    <span>Home</span>
-                    <div class="address-actions">
-                        <button>Edit</button>
-                        <button>Delete</button>
+            {% for product in wishlist %}
+                <div class="wishlist-item">
+                    <div class="wishlist-image">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        {% endif %}
+                    </div>
+                    <div class="wishlist-details">
+                        <div class="wishlist-title">{{ product.name }}</div>
+                        <div class="wishlist-price">${{ product.get_price }}</div>
+                        <div class="wishlist-actions">
+                            <a class="btn btn-outline" style="font-size: 12px; padding: 5px 10px"
+                               href="{% url 'products:cart-create' pk=product.pk %}?next={{ request.get_full_path|urlencode }}">
+                                {% trans "Add to Cart" %}
+                            </a>
+                            <a class="btn" style="font-size: 12px; padding: 5px 10px"
+                               href="{% url 'products:wishlist-delete' pk=product.pk %}?next={{ request.get_full_path|urlencode }}">
+                                {% trans "Remove" %}
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="address-details">
-                    123 Green Street, Apt 4B<br/>
-                    New York, NY 10001<br/>
-                    United States
-                </div>
-            </div>
-
-            <div class="address-item">
-                <div class="address-type">
-                    <span>Office</span>
-                    <div class="address-actions">
-                        <button>Edit</button>
-                        <button>Delete</button>
-                    </div>
-                </div>
-                <div class="address-details">
-                    456 Business Ave, Suite 200<br/>
-                    New York, NY 10002<br/>
-                    United States
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title">Wishlist</div>
-                <div class="card-action">View All</div>
-            </div>
-
-            <div class="wishlist-item">
-                <div class="wishlist-image">
-                    <img
-                            src="/placeholder.svg?height=60&width=60"
-                            alt="Eco-friendly Water Bottle"
-                    />
-                </div>
-                <div class="wishlist-details">
-                    <div class="wishlist-title">Eco-friendly Water Bottle</div>
-                    <div class="wishlist-price">$24.99</div>
-                    <div class="wishlist-actions">
-                        <button
-                                class="btn btn-outline"
-                                style="font-size: 12px; padding: 5px 10px"
-                        >
-                            Add to Cart
-                        </button>
-                        <button class="btn" style="font-size: 12px; padding: 5px 10px">
-                            Remove
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="wishlist-item">
-                <div class="wishlist-image">
-                    <img
-                            src="/placeholder.svg?height=60&width=60"
-                            alt="Bamboo Toothbrush Set"
-                    />
-                </div>
-                <div class="wishlist-details">
-                    <div class="wishlist-title">Bamboo Toothbrush Set</div>
-                    <div class="wishlist-price">$12.99</div>
-                    <div class="wishlist-actions">
-                        <button
-                                class="btn btn-outline"
-                                style="font-size: 12px; padding: 5px 10px"
-                        >
-                            Add to Cart
-                        </button>
-                        <button class="btn" style="font-size: 12px; padding: 5px 10px">
-                            Remove
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title">Account Settings</div>
-            </div>
-
-            <div style="margin-bottom: 15px">
-                <button class="btn btn-outline" style="width: 100%">
-                    Change Password
-                </button>
-            </div>
-
-            <div style="margin-bottom: 15px">
-                <button class="btn btn-outline" style="width: 100%">
-                    Notification Settings
-                </button>
-            </div>
-
-            <a href="{% url 'accounts:logout' %}">
-                <button class="btn logout-btn" id="logout-btn">Sign Out</button>
-            </a>
+            {% empty %}
+                <p>{% trans "Your wishlist is empty" %}</p>
+            {% endfor %}
         </div>
     </div>
 </div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const editInfoToggle = document.getElementById("edit-info-toggle");
-        const personalInfoForm = document.getElementById("personal-info-form");
-        const saveInfoBtn = document.getElementById("save-info-btn");
-        const formInputs = personalInfoForm.querySelectorAll("input");
-
-        const initialValues = {
-            firstName: "{{ user.first_name }}",
-            lastName: "{{ user.last_name }}",
-            email: "{{ user.email }}"
-        };
-
-        editInfoToggle.addEventListener("click", function () {
-            const isEditing = editInfoToggle.textContent === "Cancel";
-
-            if (isEditing) {
-                editInfoToggle.textContent = "Edit";
-                saveInfoBtn.style.display = "none";
-
-                personalInfoForm.querySelector("input[name='first_name']").value = initialValues.firstName;
-                personalInfoForm.querySelector("input[name='last_name']").value = initialValues.lastName;
-                personalInfoForm.querySelector("input[name='email']").value = initialValues.email;
-
-                formInputs.forEach((input) => {
-                    input.disabled = true;
-                });
-            } else {
-                editInfoToggle.textContent = "Cancel";
-                saveInfoBtn.style.display = "block";
-
-                formInputs.forEach((input) => {
-                    input.disabled = false;
-                });
-            }
-        });
-    });
-</script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 {% extends 'layouts/base.html' %}
 
 {% load static %}
+{% load i18n %}
 {% block extra_css %}
     <style>
         .color-list {
@@ -62,24 +63,24 @@
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-secondary"></i>
-                                <span class="list-inline-item text-dark">Rating 4.8 | 36 Comments</span>
+                                <span class="list-inline-item text-dark">{% trans "Rating 4.8 | 36 Comments" %}</span>
                             </p>
 
                             <ul class="list-inline">
                                 <li class="list-inline-item">
-                                    <h6>Brand:</h6>
+                                    <h6>{% trans "Brand:" %}</h6>
                                 </li>
                                 <li class="list-inline-item">
                                     <p class="text-muted"><strong>{{ product.brand.name }}</strong></p>
                                 </li>
                             </ul>
 
-                            <h6>Description:</h6>
+                            <h6>{% trans "Description:" %}</h6>
                             <p>{{ product.long_description }}</p>
 
                             <ul class="list-inline">
                                 <li class="list-inline-item">
-                                    <h6>Available Color :</h6>
+                                    <h6>{% trans "Available Color :" %}</h6>
                                 </li>
                                 <li class="list-inline-item">
                                     <div class="color-list">
@@ -99,7 +100,7 @@
                                     <div class="col-auto">
                                         <ul class="list-inline pb-3">
                                             <li class="list-inline-item">
-                                                Size :
+                                                {% trans "Size :" %}
                                                 <input type="hidden" name="product-size" id="product-size" value="S">
                                             </li>
 
@@ -114,7 +115,7 @@
                                     <div class="col-auto">
                                         <ul class="list-inline pb-3">
                                             <li class="list-inline-item text-right">
-                                                Quantity
+                                                {% trans "Quantity" %}
                                                 <input type="hidden" name="product-quanity" id="product-quanity"
                                                        value="1">
                                             </li>
@@ -137,14 +138,14 @@
                                 <div class="row pb-3">
                                     <div class="col d-grid">
                                         <button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">
-                                            Buy
+                                            {% trans "Buy" %}
                                         </button>
                                     </div>
 
                                     <div class="col d-grid">
                                         <button type="submit" class="btn btn-success btn-lg" name="submit"
                                                 value="addtocard">
-                                            Add To Cart
+                                            {% trans "Add to Cart" %}
                                         </button>
                                     </div>
                                 </div>
@@ -160,7 +161,7 @@
     <section class="py-5">
         <div class="container">
             <div class="row text-left p-2 pb-3">
-                <h4>Related Products</h4>
+                <h4>{% trans "Related Products" %}</h4>
             </div>
 
             <div class="row">

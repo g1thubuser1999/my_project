@@ -1,11 +1,13 @@
 {% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE|default:'en' }}">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Login</title>
+    <title>{% trans "Login" %}</title>
     <style>
         :root {
             --primary: #59ab6e;
@@ -238,31 +240,31 @@
 <body>
 <div class="container">
     <div class="header">
-        <h1>Welcome Back</h1>
-        <p>Sign in to your account</p>
+        <h1>{% trans "Welcome Back" %}</h1>
+        <p>{% trans "Sign in to your account" %}</p>
     </div>
     <div class="form-container">
         <form id="login-form" method="POST">
             {% csrf_token %}
             <div class="form-group">
-                <label for="email">Username</label>
+                <label for="email">{% trans "Username" %}</label>
                 <input
                         type="text"
                         id="email"
                         name="username"
-                        placeholder="Enter your username"
+                        placeholder="{% trans 'Enter your username' %}"
                         required
                 />
                 <div class="error-message" id="email-error"></div>
             </div>
 
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">{% trans "Password" %}</label>
                 <input
                         type="password"
                         id="password"
                         name="password"
-                        placeholder="Enter your password"
+                        placeholder="{% trans 'Enter your password' %}"
                         required
                 />
                 <span class="password-toggle" id="password-toggle">👁️</span>
@@ -272,18 +274,18 @@
             <div class="remember-forgot">
                 <div class="remember-me">
                     <input type="checkbox" id="remember"/>
-                    <label for="remember">Remember me</label>
+                    <label for="remember">{% trans "Remember me" %}</label>
                 </div>
                 <div class="forgot-password">
-                    <a href="#">Forgot password?</a>
+                    <a href="#">{% trans "Forgot password?" %}</a>
                 </div>
             </div>
 
-            <button type="submit" class="btn">Sign In</button>
+            <button type="submit" class="btn">{% trans "Sign In" %}</button>
         </form>
 
         <div class="register-link">
-            Don't have an account? <a href="{% url 'accounts:register' %}">Create Account</a>
+            {% trans "Don't have an account?" %} <a href="{% url 'accounts:register' %}">{% trans "Create Account" %}</a>
         </div>
     </div>
 </div>

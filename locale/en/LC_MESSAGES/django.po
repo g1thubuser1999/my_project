@@ -1,193 +1,553 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: online_shop\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-23 15:54+0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: English <en@li.org>\n"
+"POT-Creation-Date: 2026-11-24 15:45+0500\n"
+"PO-Revision-Date: 2026-11-23 00:00+0500\n"
+"Last-Translator: \n"
+"Language-Team: English\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\accounts\admin.py:6 .\blog\models.py:7 .\blog\models.py:21
 msgid "title"
 msgstr "title"
 
-#: .\accounts\admin.py:7
 msgid "sub title"
 msgstr "sub title"
 
-#: .\accounts\admin.py:8 .\blog\models.py:9 .\blog\models.py:24
 msgid "text"
 msgstr "text"
 
-#: .\accounts\admin.py:9 .\blog\models.py:10 .\blog\models.py:22
-#: .\products\models.py:8 .\products\models.py:75
 msgid "image"
 msgstr "image"
 
-#: .\accounts\admin.py:15 .\blog\models.py:16
 msgid "Banner"
 msgstr "Banner"
 
-#: .\accounts\admin.py:16 .\blog\models.py:17
 msgid "Banners"
 msgstr "Banners"
 
-#: .\accounts\models.py:6
 msgid "Avatar"
 msgstr "Avatar"
 
-#: .\blog\models.py:8 .\blog\models.py:23
 msgid "sub_title"
 msgstr "sub title"
 
-#: .\blog\models.py:25
+msgid "About Us"
+msgstr "About Us"
+
 msgid "quote"
 msgstr "quote"
 
-#: .\blog\models.py:40 .\blog\models.py:64 .\contacts\models.py:7
 msgid "user"
 msgstr "user"
 
-#: .\blog\models.py:46
 msgid "post"
 msgstr "post"
 
-#: .\blog\models.py:70
 msgid "comment"
 msgstr "comment"
 
-#: .\blog\models.py:77
 msgid "CommentLike"
 msgstr "Comment Like"
 
-#: .\blog\models.py:78
 msgid "CommentLikes"
 msgstr "Comment Likes"
 
-#: .\contacts\models.py:8 .\products\models.py:7 .\products\models.py:19
-#: .\products\models.py:52
 msgid "name"
 msgstr "name"
 
-#: .\contacts\models.py:9
 msgid "email"
 msgstr "email"
 
-#: .\contacts\models.py:10
 msgid "subject"
 msgstr "subject"
 
-#: .\contacts\models.py:11
 msgid "message"
 msgstr "message"
 
-#: .\contacts\models.py:12 .\products\models.py:92
 msgid "created at"
 msgstr "created at"
 
-#: .\contacts\models.py:18
 msgid "Contact"
 msgstr "Contact"
 
-#: .\contacts\models.py:19
 msgid "Contacts"
 msgstr "Contacts"
 
-#: .\products\models.py:14
+msgid "O'zbekcha"
+msgstr "Uzbek"
+
+msgid "Русский"
+msgstr "Russian"
+
+msgid "English"
+msgstr "English"
+
 msgid "Category"
 msgstr "Category"
 
-#: .\products\models.py:15
 msgid "Categories"
 msgstr "Categories"
 
-#: .\products\models.py:25
 msgid "Brand"
 msgstr "Brand"
 
-#: .\products\models.py:26
 msgid "Brands"
 msgstr "Brands"
 
-#: .\products\models.py:30
 msgid "color"
 msgstr "color"
 
-#: .\products\models.py:36
 msgid "Color"
 msgstr "Color"
 
-#: .\products\models.py:37
 msgid "Colors"
 msgstr "Colors"
 
-#: .\products\models.py:41
 msgid "size"
 msgstr "size"
 
-#: .\products\models.py:47
 msgid "Size"
 msgstr "Size"
 
-#: .\products\models.py:48
 msgid "Sizes"
 msgstr "Sizes"
 
-#: .\products\models.py:57
 msgid "category"
 msgstr "category"
 
-#: .\products\models.py:63
 msgid "brand"
 msgstr "brand"
 
-#: .\products\models.py:68
 msgid "colors"
 msgstr "colors"
 
-#: .\products\models.py:73
 msgid "sizes"
 msgstr "sizes"
 
-#: .\products\models.py:76
 msgid "price"
 msgstr "price"
 
-#: .\products\models.py:77
 msgid "short description"
 msgstr "short description"
 
-#: .\products\models.py:78
 msgid "long description"
 msgstr "long description"
 
-#: .\products\models.py:79
 msgid "discount"
 msgstr "discount"
 
-#: .\products\models.py:84
 msgid "wishlist"
 msgstr "wishlist"
 
-#: .\products\models.py:90
 msgid "cart"
 msgstr "cart"
 
-#: .\products\models.py:98
 msgid "Product"
 msgstr "Product"
 
-#: .\products\models.py:99
 msgid "Products"
 msgstr "Products"
+
+msgid "About information has not been added yet."
+msgstr "About information has not been added yet."
+
+msgid "Shopping Cart"
+msgstr "Shopping Cart"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Quantity"
+msgstr "Quantity"
+
+msgid "Price"
+msgstr "Price"
+
+msgid "Coupon code"
+msgstr "Coupon code"
+
+msgid "Apply Coupon"
+msgstr "Apply Coupon"
+
+msgid "Update Cart"
+msgstr "Update Cart"
+
+msgid "Your cart is empty"
+msgstr "Your cart is empty"
+
+msgid "Looks like you haven't added any items to your cart yet."
+msgstr "Looks like you haven't added any items to your cart yet."
+
+msgid "Continue Shopping"
+msgstr "Continue Shopping"
+
+msgid "Cart Summary"
+msgstr "Cart Summary"
+
+msgid "Subtotal"
+msgstr "Subtotal"
+
+msgid "Shipping"
+msgstr "Shipping"
+
+msgid "Tax"
+msgstr "Tax"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Proceed to Checkout"
+msgstr "Proceed to Checkout"
+
+msgid "We accept:"
+msgstr "We accept:"
+
+msgid "You May Also Like"
+msgstr "You May Also Like"
+
+msgid "Contact Us"
+msgstr "Contact Us"
+
+msgid "If you have any questions, feel free to contact us."
+msgstr "If you have any questions, feel free to contact us."
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Subject"
+msgstr "Subject"
+
+msgid "Message"
+msgstr "Message"
+
+msgid "Let's Talk"
+msgstr "Let's Talk"
+
+msgid "Our Location"
+msgstr "Our Location"
+
+msgid "123 Consectetur at ligula 10660"
+msgstr "123 Consectetur at ligula 10660"
+
+msgid "Categories of The Month"
+msgstr "Categories of The Month"
+
+msgid "Discover our latest product categories."
+msgstr "Discover our latest product categories."
+
+msgid "Go Shop"
+msgstr "Go Shop"
+
+msgid "Featured Product"
+msgstr "Featured Product"
+
+msgid "Discover our featured products and find your favorite items."
+msgstr "Discover our featured products and find your favorite items."
+
+msgid "View Product"
+msgstr "View Product"
+
+msgid "Zay Shop eCommerce HTML CSS Template"
+msgstr "Zay Shop eCommerce HTML CSS Template"
+
+msgid "Zay Shop"
+msgstr "Zay Shop"
+
+msgid "Luxury"
+msgstr "Luxury"
+
+msgid "Sport Wear"
+msgstr "Sport Wear"
+
+msgid "Men's Shoes"
+msgstr "Men's Shoes"
+
+msgid "Women's Shoes"
+msgstr "Women's Shoes"
+
+msgid "Popular Dress"
+msgstr "Popular Dress"
+
+msgid "Gym Accessories"
+msgstr "Gym Accessories"
+
+msgid "Sport Shoes"
+msgstr "Sport Shoes"
+
+msgid "Further Info"
+msgstr "Further Info"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Shop Locations"
+msgstr "Shop Locations"
+
+msgid "FAQs"
+msgstr "FAQs"
+
+msgid "Email address"
+msgstr "Email address"
+
+msgid "Subscribe"
+msgstr "Subscribe"
+
+msgid "Copyright"
+msgstr "Copyright"
+
+msgid "Company Name"
+msgstr "Company Name"
+
+msgid "Designed by"
+msgstr "Designed by"
+
+msgid "Zay"
+msgstr "Zay"
+
+msgid "Toggle navigation"
+msgstr "Toggle navigation"
+
+msgid "About"
+msgstr "About"
+
+msgid "Shop"
+msgstr "Shop"
+
+msgid "Search products..."
+msgstr "Search products..."
+
+msgid "Search"
+msgstr "Search"
+
+msgid "Wishlist"
+msgstr "Wishlist"
+
+msgid "Shopping cart"
+msgstr "Shopping cart"
+
+msgid "My account"
+msgstr "My account"
+
+msgid "Close"
+msgstr "Close"
+
+msgid "Login"
+msgstr "Login"
+
+msgid "Welcome Back"
+msgstr "Welcome Back"
+
+msgid "Sign in to your account"
+msgstr "Sign in to your account"
+
+msgid "Username"
+msgstr "Username"
+
+msgid "Enter your username"
+msgstr "Enter your username"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Enter your password"
+msgstr "Enter your password"
+
+msgid "Remember me"
+msgstr "Remember me"
+
+msgid "Forgot password?"
+msgstr "Forgot password?"
+
+msgid "Sign In"
+msgstr "Sign In"
+
+msgid "Don't have an account?"
+msgstr "Don't have an account?"
+
+msgid "Create Account"
+msgstr "Create Account"
+
+msgid "My Profile | E-comm shop"
+msgstr "My Profile | E-comm shop"
+
+msgid "Member since"
+msgstr "Member since"
+
+msgid "Cart"
+msgstr "Cart"
+
+msgid "Reviews"
+msgstr "Reviews"
+
+msgid "Personal Information"
+msgstr "Personal Information"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "First Name"
+msgstr "First Name"
+
+msgid "Last Name"
+msgstr "Last Name"
+
+msgid "Email Address"
+msgstr "Email Address"
+
+msgid "Save Changes"
+msgstr "Save Changes"
+
+msgid "Sign Out"
+msgstr "Sign Out"
+
+msgid "View All"
+msgstr "View All"
+
+msgid "Remove"
+msgstr "Remove"
+
+msgid "Add to Cart"
+msgstr "Add to Cart"
+
+msgid "Your wishlist is empty"
+msgstr "Your wishlist is empty"
+
+msgid "Register"
+msgstr "Register"
+
+msgid "Join our community"
+msgstr "Join our community"
+
+msgid "Enter your first name"
+msgstr "Enter your first name"
+
+msgid "Enter your last name"
+msgstr "Enter your last name"
+
+msgid "Enter your email"
+msgstr "Enter your email"
+
+msgid "Create a password"
+msgstr "Create a password"
+
+msgid "Confirm Password"
+msgstr "Confirm Password"
+
+msgid "Confirm your password"
+msgstr "Confirm your password"
+
+msgid "Already have an account?"
+msgstr "Already have an account?"
+
+msgid "Rating 4.8 | 36 Comments"
+msgstr "Rating 4.8 | 36 Comments"
+
+msgid "Brand:"
+msgstr "Brand:"
+
+msgid "Description:"
+msgstr "Description:"
+
+msgid "Available Color :"
+msgstr "Available Color :"
+
+msgid "Size :"
+msgstr "Size :"
+
+msgid "Buy"
+msgstr "Buy"
+
+msgid "Related Products"
+msgstr "Related Products"
+
+msgid "Filter & Search"
+msgstr "Filter & Search"
+
+msgid "All Categories"
+msgstr "All Categories"
+
+msgid "All Brands"
+msgstr "All Brands"
+
+msgid "Reset Filters"
+msgstr "Reset Filters"
+
+msgid "All"
+msgstr "All"
+
+msgid "Featured (Newest)"
+msgstr "Featured (Newest)"
+
+msgid "A to Z"
+msgstr "A to Z"
+
+msgid "Z to A"
+msgstr "Z to A"
+
+msgid "Price: Low to High"
+msgstr "Price: Low to High"
+
+msgid "Price: High to Low"
+msgstr "Price: High to Low"
+
+msgid "Search results for:"
+msgstr "Search results for:"
+
+msgid "No products found."
+msgstr "No products found."
+
+msgid "Show All Products"
+msgstr "Show All Products"
+
+msgid "Our Brands"
+msgstr "Our Brands"
+
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod "
+"Lorem ipsum dolor sit amet."
+msgstr ""
+"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod "
+"Lorem ipsum dolor sit amet."
+
+msgid "Brand Logo"
+msgstr "Brand Logo"
+
+msgid "My Wishlist"
+msgstr "My Wishlist"
+
+msgid "items"
+msgstr "items"
+
+msgid "Add All to Cart"
+msgstr "Add All to Cart"
+
+msgid "Clear Wishlist"
+msgstr "Clear Wishlist"
+
+msgid "Eco-friendly Water Bottle"
+msgstr "Eco-friendly Water Bottle"
+
+msgid "View Details"
+msgstr "View Details"
+
+msgid ""
+"Browse our eco-friendly products and add your favorites to your wishlist."
+msgstr ""
+"Browse our eco-friendly products and add your favorites to your wishlist."
+
+msgid "Shop Now"
+msgstr "Shop Now"
+
+msgid "Item added to cart successfully!"
+msgstr "Item added to cart successfully!"

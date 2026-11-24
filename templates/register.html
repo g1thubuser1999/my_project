@@ -1,11 +1,13 @@
 {% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE|default:'en' }}">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Register</title>
+    <title>{% trans "Register" %}</title>
     <style>
         :root {
             --primary: #59ab6e;
@@ -211,65 +213,65 @@
 <body>
 <div class="container">
     <div class="header">
-        <h1>Create Account</h1>
-        <p>Join our community</p>
+        <h1>{% trans "Create Account" %}</h1>
+        <p>{% trans "Join our community" %}</p>
     </div>
     <div class="form-container">
         <form id="register-form" method="POST">
             {% csrf_token %}
             <div class="form-group">
-                <label for="fullname">Username</label>
+                <label for="fullname">{% trans "Username" %}</label>
                 <input
                         type="text"
                         id="fullname"
                         name="username"
-                        placeholder="Enter your username"
+                        placeholder="{% trans 'Enter your username' %}"
                         required
                 />
                 <div class="error-message" id="fullname-error"></div>
             </div>
             <div class="form-group">
-                <label for="fullname">First Name</label>
+                <label for="fullname">{% trans "First Name" %}</label>
                 <input
                         type="text"
                         id="fullname"
                         name="first_name"
-                        placeholder="Enter your first name"
+                        placeholder="{% trans 'Enter your first name' %}"
                         required
                 />
                 <div class="error-message" id="fullname-error"></div>
             </div>
             <div class="form-group">
-                <label for="fullname">Last Name</label>
+                <label for="fullname">{% trans "Last Name" %}</label>
                 <input
                         type="text"
                         id="fullname"
                         name="last_name"
-                        placeholder="Enter your last name"
+                        placeholder="{% trans 'Enter your last name' %}"
                         required
                 />
                 <div class="error-message" id="fullname-error"></div>
             </div>
 
             <div class="form-group">
-                <label for="email">Email Address</label>
+                <label for="email">{% trans "Email Address" %}</label>
                 <input
                         type="email"
                         id="email"
                         name="email"
-                        placeholder="Enter your email"
+                        placeholder="{% trans 'Enter your email' %}"
                         required
                 />
                 <div class="error-message" id="email-error"></div>
             </div>
 
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">{% trans "Password" %}</label>
                 <input
                         type="password"
                         id="password"
                         name="password1"
-                        placeholder="Create a password"
+                        placeholder="{% trans 'Create a password' %}"
                         required
                 />
                 <span class="password-toggle" id="password-toggle">👁️</span>
@@ -277,23 +279,23 @@
             </div>
 
             <div class="form-group">
-                <label for="confirm-password">Confirm Password</label>
+                <label for="confirm-password">{% trans "Confirm Password" %}</label>
                 <input
                         type="password"
                         id="confirm-password"
                         name="password2"
-                        placeholder="Confirm your password"
+                        placeholder="{% trans 'Confirm your password' %}"
                         required
                 />
                 <span class="password-toggle" id="confirm-password-toggle">👁️</span>
                 <div class="error-message" id="confirm-password-error"></div>
             </div>
 
-            <button type="submit" class="btn">Create Account</button>
+            <button type="submit" class="btn">{% trans "Create Account" %}</button>
         </form>
 
         <div class="login-link">
-            Already have an account? <a href="{% url 'accounts:login' %}">Sign In</a>
+            {% trans "Already have an account?" %} <a href="{% url 'accounts:login' %}">{% trans "Sign In" %}</a>
         </div>
     </div>
 </div>

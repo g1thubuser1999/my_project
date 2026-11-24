@@ -1,6 +1,7 @@
 {% extends 'layouts/base.html' %}
 
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
@@ -13,7 +14,7 @@
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left align-self-center">
-                            <h1 class="h1 text-success"><b>Zay</b>{{ banner.title }}</h1>
+                            <h1 class="h1 text-success">{{ banner.title }}</h1>
                             {% if banner.sub_title %}
                             <h3 class="h2">{{ banner.sub_title }}</h3>
                             {% endif %}
@@ -29,77 +30,116 @@
 
 
 <!-- Start Categories of The Month -->
+
 <section class="container py-5">
+
     <div class="row text-center pt-3">
         <div class="col-lg-6 m-auto">
-            <h1 class="h1">Categories of The Month</h1>
-            <p>
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.
-            </p>
+            <h1 class="h1">{% trans "Categories of The Month" %}</h1>
+            <p>{% trans "Discover our latest product categories." %}</p>
         </div>
     </div>
+
     <div class="row">
+
         {% for category in categories %}
-        <div class="col-12 col-md-4 p-5 mt-3 d-flex flex-column align-items-center">
+        <div class="col-12 col-md-4 p-4 mt-3 text-center">
+
             <a href="#">
-                <img src="{{ category.image.url }}" alt="{{ category.name }}"
-                     class="rounded-circle img-fluid border"
-                     style="width: 300px; height: 300px; border-radius: 50%; object-fit: cover"
+                <img
+                    src="{{ category.image.url }}"
+                    alt="{{ category.name }}"
+                    class="rounded-circle img-fluid border"
+                    style="width: 220px; height: 220px; object-fit: cover;"
                 >
             </a>
-            <h5 class="text-center mt-3 mb-3">{{ category.name }}</h5>
-            <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
+
+            <h2 class="h5 mt-3 mb-3">
+                {{ category.title }}
+            </h2>
+
+            {% if category.sub_title %}
+            <h3 class="h6">{{ category.sub_title }}</h3>
+            {% endif %}
+
+            <p>{{ category.text }}</p>
+
+            <a href="#" class="btn btn-success">
+                {% trans "Go Shop" %}
+            </a>
+
         </div>
         {% endfor %}
+
     </div>
 </section>
+
 <!-- End Categories of The Month -->
 
 
 <!-- Start Featured Product -->
-<section class="bg-light">
-    <div class="container py-5">
+
+<section class="bg-light py-5">
+    <div class="container">
+
+        <!-- Section Title -->
         <div class="row text-center py-3">
             <div class="col-lg-6 m-auto">
-                <h1 class="h1">Featured Product</h1>
-                <p>
-                    Reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint occaecat cupidatat non proident.
-                </p>
+                <h1 class="h1">{% trans "Featured Product" %}</h1>
+                <p>{% trans "Discover our featured products and find your favorite items." %}</p>
             </div>
         </div>
+
+        <!-- Products -->
         <div class="row">
+
             {% for product in products %}
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card h-100">
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+
+                <div class="card h-100 shadow-sm border-0">
+
+                    <!-- Product Image -->
                     <a href="{% url 'products:detail' pk=product.pk %}">
-                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name}}">
+                        <img
+                            src="{{ product.image.url }}"
+                            class="card-img-top"
+                            alt="{{ product.name }}"
+                            style="height: 230px; object-fit: contain; background: white; padding: 10px;"
+                        >
                     </a>
-                    <div class="card-body">
-                        <ul class="list-unstyled d-flex justify-content-between">
-                            <li>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-warning fa fa-star"></i>
-                                <i class="text-muted fa fa-star"></i>
-                                <i class="text-muted fa fa-star"></i>
-                            </li>
-                            <li class="text-muted text-right">${{ product.get_price }}</li>
-                        </ul>
-                        <a href="{% url 'products:detail' pk=product.pk %}"
-                           class="h2 text-decoration-none text-dark">
-                            {{ product.name }}
-                        </a>
-                        <p class="card-text">
+
+                    <!-- Product Details -->
+                    <div class="card-body d-flex flex-column">
+
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h2 class="h5 mb-0">
+                                {{ product.name }}
+                            </h2>
+
+                            <span class="text-success fw-bold">
+                                ${{ product.get_price }}
+                            </span>
+                        </div>
+
+                        <p class="card-text text-muted">
                             {{ product.short_description }}
                         </p>
-                        <p class="text-muted">Reviews (24)</p>
+
+                        <div class="mt-auto pt-2">
+                            <a href="{% url 'products:detail' pk=product.pk %}"
+                               class="btn btn-success w-100">
+                                {% trans "View Product" %}
+                            </a>
+                        </div>
+
                     </div>
                 </div>
+
             </div>
             {% endfor %}
+
         </div>
     </div>
 </section>
+
 {% endblock %}
